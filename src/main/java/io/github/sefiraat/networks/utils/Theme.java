@@ -48,12 +48,12 @@ public enum Theme {
     @Nonnull
     public Particle.DustOptions getDustOptions(float size) {
         return new Particle.DustOptions(
-            Color.fromRGB(
-                color.getColor().getRed(),
-                color.getColor().getGreen(),
-                color.getColor().getBlue()
-            ),
-            size
+                Color.fromRGB(
+                        color.getColor().getRed(),
+                        color.getColor().getGreen(),
+                        color.getColor().getBlue()
+                ),
+                size
         );
     }
 
@@ -92,10 +92,10 @@ public enum Theme {
         finalLore.add("");
         finalLore.add(applyThemeToString(Theme.CLICK_INFO, themeType.getLoreLine()));
         return new SlimefunItemStack(
-            id,
-            itemStack,
-            Theme.applyThemeToString(themeType, name),
-            finalLore.toArray(new String[finalLore.size() - 1])
+                id,
+                itemStack,
+                Theme.applyThemeToString(themeType, name),
+                finalLore.toArray(new String[finalLore.size() - 1])
         );
     }
 
@@ -132,12 +132,19 @@ public enum Theme {
         }
         finalLore.add("");
         finalLore.add(applyThemeToString(Theme.CLICK_INFO, themeType.getLoreLine()));
-        return new CustomItemStack(
-            material,
-            Theme.applyThemeToString(themeType, name),
-            finalLore.toArray(new String[finalLore.size() - 1])
+        return CustomItemStack.create(
+                material,
+                Theme.applyThemeToString(themeType, name),
+                finalLore.toArray(new String[finalLore.size() - 1])
         );
+
     }
 
+    public ChatColor getColor() {
+        return color;
+    }
 
+    public String getLoreLine() {
+        return loreLine;
+    }
 }

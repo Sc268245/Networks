@@ -19,51 +19,51 @@ import javax.annotation.Nonnull;
 public final class NetworksItemGroups {
 
     public static final MainFlexGroup MAIN = new MainFlexGroup(
-        Keys.newKey("main"),
-        new CustomItemStack(
-            new ItemStack(Material.BLACK_STAINED_GLASS),
-            Theme.MAIN.getColor() + "Networks"
-        )
+            Keys.newKey("main"),
+            CustomItemStack.create(
+                    new ItemStack(Material.BLACK_STAINED_GLASS),
+                    Theme.MAIN.getColor() + "Networks"
+            )
     );
 
     public static final DummyItemGroup MATERIALS = new DummyItemGroup(
-        Keys.newKey("materials"),
-        new CustomItemStack(
-            new ItemStack(Material.WHITE_STAINED_GLASS),
-            Theme.MAIN.getColor() + "Crafting Materials"
-        )
+            Keys.newKey("materials"),
+            CustomItemStack.create(
+                    new ItemStack(Material.WHITE_STAINED_GLASS),
+                    Theme.MAIN.getColor() + "Crafting Materials"
+            )
     );
 
     public static final DummyItemGroup TOOLS = new DummyItemGroup(
-        Keys.newKey("tools"),
-        new CustomItemStack(
-            new ItemStack(Material.PAINTING),
-            Theme.MAIN.getColor() + "Network Management Tools"
-        )
+            Keys.newKey("tools"),
+            CustomItemStack.create(
+                    new ItemStack(Material.PAINTING),
+                    Theme.MAIN.getColor() + "Network Management Tools"
+            )
     );
 
     public static final DummyItemGroup NETWORK_ITEMS = new DummyItemGroup(
-        Keys.newKey("network_items"),
-        new CustomItemStack(
-            new ItemStack(Material.BLACK_STAINED_GLASS),
-            Theme.MAIN.getColor() + "Network Items"
-        )
+            Keys.newKey("network_items"),
+            CustomItemStack.create(
+                    new ItemStack(Material.BLACK_STAINED_GLASS),
+                    Theme.MAIN.getColor() + "Network Items"
+            )
     );
 
     public static final DummyItemGroup NETWORK_QUANTUMS = new DummyItemGroup(
-        Keys.newKey("network_quantums"),
-        new CustomItemStack(
-            new ItemStack(Material.WHITE_TERRACOTTA),
-            Theme.MAIN.getColor() + "Network Quantum Storage Devices"
-        )
+            Keys.newKey("network_quantums"),
+            CustomItemStack.create(
+                    new ItemStack(Material.WHITE_TERRACOTTA),
+                    Theme.MAIN.getColor() + "Network Quantum Storage Devices"
+            )
     );
 
     public static final ItemGroup DISABLED_ITEMS = new HiddenItemGroup(
-        Keys.newKey("disabled_items"),
-        new CustomItemStack(
-            new ItemStack(Material.BARRIER),
-            Theme.MAIN.getColor() + "Disabled/Removed Items"
-        )
+            Keys.newKey("disabled_items"),
+            CustomItemStack.create(
+                    new ItemStack(Material.BARRIER),
+                    Theme.MAIN.getColor() + "Disabled/Removed Items"
+            )
     );
 
     static {

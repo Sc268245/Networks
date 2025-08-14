@@ -38,7 +38,7 @@ import java.util.UUID;
 public class NetworkControlX extends NetworkDirectional {
 
     private static final int[] BACKGROUND_SLOTS = new int[]{
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 17, 18, 20, 22, 23, 24, 26, 27, 28, 30, 31, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 17, 18, 20, 22, 23, 24, 26, 27, 28, 30, 31, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44
     };
     private static final int[] TEMPLATE_BACKGROUND = new int[]{16};
     private static final int TEMPLATE_SLOT = 25;
@@ -52,10 +52,10 @@ public class NetworkControlX extends NetworkDirectional {
 
     private final Set<BlockPosition> blockCache = new HashSet<>();
 
-    public static final CustomItemStack TEMPLATE_BACKGROUND_STACK = new CustomItemStack(
-        Material.BLUE_STAINED_GLASS_PANE,
-        Theme.PASSIVE + "Cut items matching template.",
-        Theme.PASSIVE + "Leaving blank will cut anything"
+    public static final ItemStack TEMPLATE_BACKGROUND_STACK = CustomItemStack.create(
+            Material.BLUE_STAINED_GLASS_PANE,
+            Theme.PASSIVE + "Cut items matching template.",
+            Theme.PASSIVE + "Leaving blank will cut anything"
     );
     private static final Particle.DustOptions DUST_OPTIONS = new Particle.DustOptions(Color.GRAY, 1);
 
@@ -116,7 +116,7 @@ public class NetworkControlX extends NetworkDirectional {
         boolean mustMatch = templateStack != null && !templateStack.getType().isAir();
 
         if ((mustMatch && (targetBlock.getType() != templateStack.getType()))
-            || (SlimefunItem.getByItem(templateStack) != null)
+                || (SlimefunItem.getByItem(templateStack) != null)
         ) {
             return;
         }
@@ -143,10 +143,10 @@ public class NetworkControlX extends NetworkDirectional {
 
                 targetBlock.setType(Material.AIR, true);
                 ParticleUtils.displayParticleRandomly(
-                    LocationUtils.centre(targetBlock.getLocation()),
-                    1,
-                    5,
-                    DUST_OPTIONS
+                        LocationUtils.centre(targetBlock.getLocation()),
+                        1,
+                        5,
+                        DUST_OPTIONS
                 );
                 definition.getNode().getRoot().removeRootPower(REQUIRED_POWER);
             });
@@ -167,7 +167,7 @@ public class NetworkControlX extends NetworkDirectional {
 
     @Nullable
     @Override
-    protected CustomItemStack getOtherBackgroundStack() {
+    protected ItemStack getOtherBackgroundStack() {
         return TEMPLATE_BACKGROUND_STACK;
     }
 

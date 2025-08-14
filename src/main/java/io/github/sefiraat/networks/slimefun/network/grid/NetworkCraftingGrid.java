@@ -30,15 +30,15 @@ import java.util.Map;
 public class NetworkCraftingGrid extends AbstractGrid {
 
     private static final int[] BACKGROUND_SLOTS = {
-        0, 1, 3, 4, 5, 14, 23, 32, 33, 35, 41, 42, 44, 45, 47, 49, 50, 51, 52, 53
+            0, 1, 3, 4, 5, 14, 23, 32, 33, 35, 41, 42, 44, 45, 47, 49, 50, 51, 52, 53
     };
 
     private static final int[] DISPLAY_SLOTS = {
-        9, 10, 11, 12, 13, 18, 19, 20, 21, 22, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40
+            9, 10, 11, 12, 13, 18, 19, 20, 21, 22, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40
     };
 
     private static final int[] CRAFT_ITEMS = {
-        6, 7, 8, 15, 16, 17, 24, 25, 26
+            6, 7, 8, 15, 16, 17, 24, 25, 26
     };
 
     private static final int INPUT_SLOT = 2;
@@ -50,11 +50,11 @@ public class NetworkCraftingGrid extends AbstractGrid {
     private static final int CRAFT_BUTTON_SLOT = 34;
     private static final int CRAFT_OUTPUT_SLOT = 43;
 
-    private static final CustomItemStack CRAFT_BUTTON_STACK = new CustomItemStack(
-        Material.CRAFTING_TABLE,
-        Theme.CLICK_INFO.getColor() + "Craft",
-        Theme.CLICK_INFO + "Left Click: " + Theme.PASSIVE + "Try to Craft",
-        Theme.CLICK_INFO + "Shift Left Click: " + Theme.PASSIVE + "Try to return items"
+    private static final ItemStack CRAFT_BUTTON_STACK = CustomItemStack.create(
+            Material.CRAFTING_TABLE,
+            Theme.CLICK_INFO.getColor() + "Craft",
+            Theme.CLICK_INFO + "Left Click: " + Theme.PASSIVE + "Try to Craft",
+            Theme.CLICK_INFO + "Shift Left Click: " + Theme.PASSIVE + "Try to return items"
     );
 
     private static final Map<Location, GridCache> CACHE_MAP = new HashMap<>();
@@ -86,7 +86,7 @@ public class NetworkCraftingGrid extends AbstractGrid {
             @Override
             public boolean canOpen(@Nonnull Block block, @Nonnull Player player) {
                 return NetworkSlimefunItems.NETWORK_GRID.canUse(player, false)
-                    && Slimefun.getProtectionManager().hasPermission(player, block.getLocation(), Interaction.INTERACT_BLOCK);
+                        && Slimefun.getProtectionManager().hasPermission(player, block.getLocation(), Interaction.INTERACT_BLOCK);
             }
 
             @Override

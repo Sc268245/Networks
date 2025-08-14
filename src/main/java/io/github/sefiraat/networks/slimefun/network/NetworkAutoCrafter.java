@@ -44,7 +44,7 @@ import java.util.Optional;
 public class NetworkAutoCrafter extends NetworkObject {
 
     private static final int[] BACKGROUND_SLOTS = new int[]{
-        3, 4, 5, 12, 13, 14, 21, 22, 23
+            3, 4, 5, 12, 13, 14, 21, 22, 23
     };
     private static final int[] BLUEPRINT_BACKGROUND = new int[]{0, 1, 2, 9, 11, 18, 19, 20};
     private static final int[] OUTPUT_BACKGROUND = new int[]{6, 7, 8, 15, 17, 24, 25, 26};
@@ -52,12 +52,12 @@ public class NetworkAutoCrafter extends NetworkObject {
     private static final int BLUEPRINT_SLOT = 10;
     private static final int OUTPUT_SLOT = 16;
 
-    public static final CustomItemStack BLUEPRINT_BACKGROUND_STACK = new CustomItemStack(
-        Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "Crafting Blueprint"
+    public static final ItemStack BLUEPRINT_BACKGROUND_STACK = CustomItemStack.create(
+            Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "Crafting Blueprint"
     );
 
-    public static final CustomItemStack OUTPUT_BACKGROUND_STACK = new CustomItemStack(
-        Material.GREEN_STAINED_GLASS_PANE, Theme.PASSIVE + "Output"
+    public static final ItemStack OUTPUT_BACKGROUND_STACK = CustomItemStack.create(
+            Material.GREEN_STAINED_GLASS_PANE, Theme.PASSIVE + "Output"
     );
 
     private final int chargePerCraft;
@@ -75,21 +75,21 @@ public class NetworkAutoCrafter extends NetworkObject {
         this.getSlotsToDrop().add(OUTPUT_SLOT);
 
         addItemHandler(
-            new BlockTicker() {
-                @Override
-                public boolean isSynchronized() {
-                    return false;
-                }
+                new BlockTicker() {
+                    @Override
+                    public boolean isSynchronized() {
+                        return false;
+                    }
 
-                @Override
-                public void tick(Block block, SlimefunItem slimefunItem, Config config) {
-                    BlockMenu blockMenu = BlockStorage.getInventory(block);
-                    if (blockMenu != null) {
-                        addToRegistry(block);
-                        craftPreFlight(blockMenu);
+                    @Override
+                    public void tick(Block block, SlimefunItem slimefunItem, Config config) {
+                        BlockMenu blockMenu = BlockStorage.getInventory(block);
+                        if (blockMenu != null) {
+                            addToRegistry(block);
+                            craftPreFlight(blockMenu);
+                        }
                     }
                 }
-            }
         );
     }
 
@@ -144,8 +144,8 @@ public class NetworkAutoCrafter extends NetworkObject {
             final ItemStack output = blockMenu.getItemInSlot(OUTPUT_SLOT);
 
             if (output != null
-                && output.getType() != Material.AIR
-                && (output.getAmount() + instance.getItemStack().getAmount() >= output.getMaxStackSize() || !StackUtils.itemsMatch(instance, output, true))) {
+                    && output.getType() != Material.AIR
+                    && (output.getAmount() + instance.getItemStack().getAmount() >= output.getMaxStackSize() || !StackUtils.itemsMatch(instance, output, true))) {
                 return;
             }
 
@@ -260,7 +260,7 @@ public class NetworkAutoCrafter extends NetworkObject {
             @Override
             public boolean canOpen(@Nonnull Block block, @Nonnull Player player) {
                 return NetworkSlimefunItems.NETWORK_AUTO_CRAFTER.canUse(player, false)
-                    && Slimefun.getProtectionManager().hasPermission(player, block.getLocation(), Interaction.INTERACT_BLOCK);
+                        && Slimefun.getProtectionManager().hasPermission(player, block.getLocation(), Interaction.INTERACT_BLOCK);
             }
 
             @Override

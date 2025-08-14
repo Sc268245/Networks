@@ -168,4 +168,8 @@ public abstract class NetworkObject extends SlimefunItem implements AdminDebugga
     public boolean runSync() {
         return false;
     }
+
+    protected List<Integer> getSlotsToDrop() {
+        return slotsToDrop;
+    }
 }

@@ -31,15 +31,15 @@ import java.util.Map;
 public class NetworkEncoder extends NetworkObject {
 
     private static final int[] BACKGROUND = new int[]{
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 17, 18, 20, 24, 25, 26, 27, 28, 29, 33, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 17, 18, 20, 24, 25, 26, 27, 28, 29, 33, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44
     };
 
     private static final int[] RECIPE_SLOTS = new int[]{
-        12, 13, 14, 21, 22, 23, 30, 31, 32
+            12, 13, 14, 21, 22, 23, 30, 31, 32
     };
 
     private static final int[] BLUEPRINT_BACK = new int[]{
-        10, 28
+            10, 28
     };
 
     private static final int BLANK_BLUEPRINT_SLOT = 19;
@@ -48,12 +48,12 @@ public class NetworkEncoder extends NetworkObject {
 
     private static final int CHARGE_COST = 20000;
 
-    public static final CustomItemStack BLUEPRINT_BACK_STACK = new CustomItemStack(
-        Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "Blank Blueprint"
+    public static final ItemStack BLUEPRINT_BACK_STACK = CustomItemStack.create(
+            Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "Blank Blueprint"
     );
 
-    public static final CustomItemStack ENCODE_STACK = new CustomItemStack(
-        Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "Click to encode when valid"
+    public static final ItemStack ENCODE_STACK = CustomItemStack.create(
+            Material.BLUE_STAINED_GLASS_PANE, Theme.PASSIVE + "Click to encode when valid"
     );
 
     public NetworkEncoder(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -89,7 +89,7 @@ public class NetworkEncoder extends NetworkObject {
             @Override
             public boolean canOpen(@Nonnull Block block, @Nonnull Player player) {
                 return NetworkSlimefunItems.NETWORK_RECIPE_ENCODER.canUse(player, false)
-                    && Slimefun.getProtectionManager().hasPermission(player, block.getLocation(), Interaction.INTERACT_BLOCK);
+                        && Slimefun.getProtectionManager().hasPermission(player, block.getLocation(), Interaction.INTERACT_BLOCK);
             }
 
             @Override

@@ -34,30 +34,30 @@ import java.util.Map;
 public class NetworkQuantumWorkbench extends SlimefunItem {
 
     private static final int[] BACKGROUND_SLOTS = {
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 14, 15, 16, 17, 18, 22, 24, 26, 27, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 14, 15, 16, 17, 18, 22, 24, 26, 27, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44
     };
     private static final int[] RECIPE_SLOTS = {
-        10, 11, 12, 19, 20, 21, 28, 29, 30
+            10, 11, 12, 19, 20, 21, 28, 29, 30
     };
     private static final int CRAFT_SLOT = 23;
     private static final int OUTPUT_SLOT = 25;
 
-    private static final CustomItemStack CRAFT_BUTTON_STACK = new CustomItemStack(
-        Material.CRAFTING_TABLE,
-        Theme.CLICK_INFO + "Click to entangle"
+    private static final ItemStack CRAFT_BUTTON_STACK = CustomItemStack.create(
+            Material.CRAFTING_TABLE,
+            Theme.CLICK_INFO + "Click to entangle"
     );
 
     private static final Map<ItemStack[], ItemStack> RECIPES = new HashMap<>();
 
     public static final RecipeType TYPE = new RecipeType(
-        Keys.newKey("quantum-workbench"),
-        Theme.themedItemStack(
-            Material.BRAIN_CORAL_BLOCK,
-            Theme.MACHINE,
-            "Quantum Workbench",
-            "Crafted using the Quantum Workbench."
-        ),
-        NetworkQuantumWorkbench::addRecipe
+            Keys.newKey("quantum-workbench"),
+            Theme.themedItemStack(
+                    Material.BRAIN_CORAL_BLOCK,
+                    Theme.MACHINE,
+                    "Quantum Workbench",
+                    "Crafted using the Quantum Workbench."
+            ),
+            NetworkQuantumWorkbench::addRecipe
     );
 
     @ParametersAreNonnullByDefault
@@ -82,7 +82,7 @@ public class NetworkQuantumWorkbench extends SlimefunItem {
             @Override
             public boolean canOpen(@Nonnull Block block, @Nonnull Player player) {
                 return BlockStorage.check(block).canUse(player, false)
-                    && Slimefun.getProtectionManager().hasPermission(player, block.getLocation(), Interaction.INTERACT_BLOCK);
+                        && Slimefun.getProtectionManager().hasPermission(player, block.getLocation(), Interaction.INTERACT_BLOCK);
             }
 
             @Override
@@ -143,10 +143,10 @@ public class NetworkQuantumWorkbench extends SlimefunItem {
 
                 if (oldCache != null) {
                     final QuantumCache newCache = new QuantumCache(
-                        oldCache.getItemStack().clone(),
-                        oldCache.getAmount(),
-                        newQuantum.getMaxAmount(),
-                        oldCache.isVoidExcess()
+                            oldCache.getItemStack().clone(),
+                            oldCache.getAmount(),
+                            newQuantum.getMaxAmount(),
+                            oldCache.isVoidExcess()
                     );
                     DataTypeMethods.setCustom(newMeta, Keys.QUANTUM_STORAGE_INSTANCE, PersistentQuantumStorageType.TYPE, newCache);
                     newCache.addMetaLore(newMeta);

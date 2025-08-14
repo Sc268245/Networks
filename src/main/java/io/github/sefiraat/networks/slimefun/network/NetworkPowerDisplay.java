@@ -29,34 +29,34 @@ import javax.annotation.Nonnull;
 public class NetworkPowerDisplay extends NetworkObject {
 
     private static final int[] BACKGROUND_SLOTS = new int[]{
-        0, 1, 2, 3, 5, 6, 7, 8
+            0, 1, 2, 3, 5, 6, 7, 8
     };
     private static final int DISPLAY_SLOT = 4;
 
-    private static final CustomItemStack EMPTY = new CustomItemStack(
-        Material.RED_STAINED_GLASS_PANE,
-        Theme.CLICK_INFO + "Status",
-        Theme.PASSIVE + "Disconnected"
+    private static final ItemStack EMPTY = CustomItemStack.create(
+            Material.RED_STAINED_GLASS_PANE,
+            Theme.CLICK_INFO + "Status",
+            Theme.PASSIVE + "Disconnected"
     );
 
     public NetworkPowerDisplay(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe, NodeType.POWER_DISPLAY);
         addItemHandler(
-            new BlockTicker() {
-                @Override
-                public boolean isSynchronized() {
-                    return false;
-                }
+                new BlockTicker() {
+                    @Override
+                    public boolean isSynchronized() {
+                        return false;
+                    }
 
-                @Override
-                public void tick(Block block, SlimefunItem slimefunItem, Config config) {
-                    BlockMenu blockMenu = BlockStorage.getInventory(block);
-                    if (blockMenu != null) {
-                        addToRegistry(block);
-                        setDisplay(blockMenu);
+                    @Override
+                    public void tick(Block block, SlimefunItem slimefunItem, Config config) {
+                        BlockMenu blockMenu = BlockStorage.getInventory(block);
+                        if (blockMenu != null) {
+                            addToRegistry(block);
+                            setDisplay(blockMenu);
+                        }
                     }
                 }
-            }
         );
     }
 
@@ -88,7 +88,7 @@ public class NetworkPowerDisplay extends NetworkObject {
             @Override
             public boolean canOpen(@Nonnull Block block, @Nonnull Player player) {
                 return NetworkSlimefunItems.NETWORK_POWER_DISPLAY.canUse(player, false)
-                    && Slimefun.getProtectionManager().hasPermission(player, block.getLocation(), Interaction.INTERACT_BLOCK);
+                        && Slimefun.getProtectionManager().hasPermission(player, block.getLocation(), Interaction.INTERACT_BLOCK);
             }
 
             @Override
@@ -98,11 +98,11 @@ public class NetworkPowerDisplay extends NetworkObject {
         };
     }
 
-    private static CustomItemStack getChargeStack(long charge) {
-        return new CustomItemStack(
-            Material.GREEN_STAINED_GLASS_PANE,
-            Theme.CLICK_INFO + "Status",
-            Theme.PASSIVE + "Current Network Charge: " + charge + "j"
+    private static ItemStack getChargeStack(long charge) {
+        return CustomItemStack.create(
+                Material.GREEN_STAINED_GLASS_PANE,
+                Theme.CLICK_INFO + "Status",
+                Theme.PASSIVE + "Current Network Charge: " + charge + "j"
         );
     }
 }

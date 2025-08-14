@@ -39,14 +39,14 @@ public class NetworkExport extends NetworkObject {
     private static final int OUTPUT_ITEM_SLOT = 24;
     private static final int[] OUTPUT_ITEM_BACKDROP = {14, 15, 16, 23, 25, 32, 33, 34};
 
-    private static final CustomItemStack TEST_BACKDROP_STACK = new CustomItemStack(
-        Material.GREEN_STAINED_GLASS_PANE,
-        Theme.SUCCESS + "Export Item Matching"
+    private static final ItemStack TEST_BACKDROP_STACK = CustomItemStack.create(
+            Material.GREEN_STAINED_GLASS_PANE,
+            Theme.SUCCESS + "Export Item Matching"
     );
 
-    private static final CustomItemStack OUTPUT_BACKDROP_STACK = new CustomItemStack(
-        Material.ORANGE_STAINED_GLASS_PANE,
-        Theme.SUCCESS + "Output Slot"
+    private static final ItemStack OUTPUT_BACKDROP_STACK = CustomItemStack.create(
+            Material.ORANGE_STAINED_GLASS_PANE,
+            Theme.SUCCESS + "Output Slot"
     );
 
     private final ItemSetting<Integer> tickRate;
@@ -60,37 +60,37 @@ public class NetworkExport extends NetworkObject {
         this.getSlotsToDrop().add(OUTPUT_ITEM_SLOT);
 
         addItemHandler(
-            new BlockTicker() {
+                new BlockTicker() {
 
-                private int tick = 1;
+                    private int tick = 1;
 
-                @Override
-                public boolean isSynchronized() {
-                    return false;
-                }
+                    @Override
+                    public boolean isSynchronized() {
+                        return false;
+                    }
 
-                @Override
-                public void tick(Block block, SlimefunItem item, Config data) {
-                    if (tick <= 1) {
-                        final BlockMenu blockMenu = BlockStorage.getInventory(block);
-                        addToRegistry(block);
-                        tryFetchItem(blockMenu);
+                    @Override
+                    public void tick(Block block, SlimefunItem item, Config data) {
+                        if (tick <= 1) {
+                            final BlockMenu blockMenu = BlockStorage.getInventory(block);
+                            addToRegistry(block);
+                            tryFetchItem(blockMenu);
+                        }
+                    }
+
+                    @Override
+                    public void uniqueTick() {
+                        tick = tick <= 1 ? tickRate.getValue() : tick - 1;
+                    }
+                },
+                new BlockBreakHandler(true, true) {
+                    @Override
+                    public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
+                        BlockMenu blockMenu = BlockStorage.getInventory(e.getBlock());
+                        blockMenu.dropItems(blockMenu.getLocation(), TEST_ITEM_SLOT);
+                        blockMenu.dropItems(blockMenu.getLocation(), OUTPUT_ITEM_SLOT);
                     }
                 }
-
-                @Override
-                public void uniqueTick() {
-                    tick = tick <= 1 ? tickRate.getValue() : tick - 1;
-                }
-            },
-            new BlockBreakHandler(true, true) {
-                @Override
-                public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
-                    BlockMenu blockMenu = BlockStorage.getInventory(e.getBlock());
-                    blockMenu.dropItems(blockMenu.getLocation(), TEST_ITEM_SLOT);
-                    blockMenu.dropItems(blockMenu.getLocation(), OUTPUT_ITEM_SLOT);
-                }
-            }
         );
     }
 
@@ -131,7 +131,7 @@ public class NetworkExport extends NetworkObject {
             @Override
             public boolean canOpen(@Nonnull Block block, @Nonnull Player player) {
                 return NetworkSlimefunItems.NETWORK_GRID.canUse(player, false)
-                    && Slimefun.getProtectionManager().hasPermission(player, block.getLocation(), Interaction.INTERACT_BLOCK);
+                        && Slimefun.getProtectionManager().hasPermission(player, block.getLocation(), Interaction.INTERACT_BLOCK);
             }
 
             @Override
