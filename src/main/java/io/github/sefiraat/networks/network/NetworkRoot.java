@@ -1,6 +1,8 @@
 package io.github.sefiraat.networks.network;
 
-import io.github.mooy1.infinityexpansion.items.storage.StorageUnit;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.blocks.BlockPosition;
+import net.guizhanss.infinityexpansion2.implementation.items.storage.StorageCache;
+import net.guizhanss.infinityexpansion2.implementation.items.storage.StorageUnit;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.barrel.InfinityBarrel;
 import io.github.sefiraat.networks.network.barrel.NetworkStorage;
@@ -17,6 +19,7 @@ import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
+import net.guizhanss.infinityexpansion2.libs.guizhanlib.kt.slimefun.extensions.BlockPositonExtKt;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -381,7 +384,8 @@ public class NetworkRoot extends NetworkNode {
             return null;
         }
 
-        final io.github.mooy1.infinityexpansion.items.storage.StorageCache cache = storageUnit.getCache(blockMenu.getLocation());
+        final BlockPosition blockPosition = BlockPositonExtKt.getPosition(blockMenu);
+        final StorageCache cache = storageUnit.getCaches().get(blockPosition);
 
         if (cache == null) {
             return null;

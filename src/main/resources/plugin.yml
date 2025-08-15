@@ -8,7 +8,7 @@ api-version: 1.21
 depend:
   - Slimefun
 softdepend:
-  - InfinityExpansion
+  - InfinityExpansion2
   - Netheopoiesis
   - SlimeHUD
   - WildChests

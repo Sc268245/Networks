@@ -148,7 +148,7 @@
         <dependency>
             <groupId>com.github.Slimefun</groupId>
             <artifactId>Slimefun4</artifactId>
-            <version>experimental-3ea21da4fe-1</version>
+            <version>experimental-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -185,9 +185,9 @@
 
         <!-- Supported Plugins -->
         <dependency>
-            <groupId>io.github.mooy1</groupId>
-            <artifactId>InfinityExpansion</artifactId>
-            <version>90e11bc</version>
+            <groupId>com.github.GuizhanCraft</groupId>
+            <artifactId>InfinityExpansion2</artifactId>
+            <version>-3bfc52fbb5-1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
